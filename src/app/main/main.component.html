@@ -1,17 +1,17 @@
-
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow">
   <div class="container">
-    <a class="navbar-brand" href="#">Start Bootstrap</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+    <a class="navbar-brand" href="#">Proxy</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+      aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
           <a class="nav-link" href="#">Home
-                <span class="sr-only">(current)</span>
-              </a>
+            <span class="sr-only">(current)</span>
+          </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">About</a>
@@ -31,11 +31,55 @@
 <div class="container">
   <div class="card border-0 shadow my-5">
     <div class="card-body p-5">
-      <h1 class="font-weight-light">Fixed Full Page Background Image</h1>
-      <p class="lead">In this snippet, the background image is fixed to the body element. Content on the page will scroll, but the image will remain in a fixed position!</p>
-      <p class="lead">Scroll down...</p>
-      <div style="height: 700px"></div>
-      <p class="lead mb-0">You've reached the end!</p>
+
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="ip">
+            <th mat-header-cell *matHeaderCellDef>IP</th>
+            <td mat-cell *matCellDef="let row">{{row.ip}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="port">
+            <th mat-header-cell *matHeaderCellDef>Port</th>
+            <td mat-cell *matCellDef="let row">{{row.port}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="provider">
+            <th mat-header-cell *matHeaderCellDef>Provider</th>
+            <td mat-cell *matCellDef="let row">{{row.provider}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="basicTest">
+            <th mat-header-cell *matHeaderCellDef>Basic Test</th>
+            <td mat-cell *matCellDef="let row">{{row.basicFunctionality}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="testDate">
+            <th mat-header-cell *matHeaderCellDef>Test Date</th>
+            <td mat-cell *matCellDef="let row">{{row.testDate | date: 'medium'}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="firstfound">
+            <th mat-header-cell *matHeaderCellDef>First found</th>
+            <td mat-cell *matCellDef="let row">{{row.createdAt | date: 'medium'}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="lastfound">
+            <th mat-header-cell *matHeaderCellDef>Last found</th>
+            <td mat-cell *matCellDef="let row">{{row.updatedAt | date: 'medium'}}</td>
+          </ng-container>
+
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+      </div>
+
     </div>
   </div>
 </div>
